@@ -39,3 +39,35 @@ hayRepetidos (x:xs)
 quitar :: (Eq t) => t -> [t] -> [t]
 quitar x (y:ys)
     | 
+-----ejercicioTres-----
+sumatoria :: [Integer] -> Integer
+sumatoria [] = 0
+sumatoria (x:xs) = sumatoria xs + x
+productoria :: [Integer] -> Integer
+productoria [] = 1
+productoria (x:xs) = productoria xs * x
+maximo :: [Integer] -> Integer
+maximo [x] = x
+maximo (x:xs)
+    | x < (head xs) = maximo xs
+    | maximo (x:(tail xs))
+sumarN :: Integer -> [Integer] -> [Integer]
+sumarN n [x] = [x+n]
+sumarN n (x:xs) = x+n : sumarN n xs
+sumarElPrimero :: [Integer] -> [Integer]
+sumarElPrimero (x:xs) = sumarN x (x:xs)
+sumarElUltimo :: [Integer] -> [Integer]
+sumarElUltimo (x:xs) = sumarN (ultimo (x:xs)) (x:xs)
+pares :: [Integer] -> [Integer]
+pares [] = []
+pares (x:xs)
+    | mod x 2 == 0 = x : pares xs
+    | otherwise = pares xs
+multiplosDeN :: Integer -> [Integer] -> [Integer]
+multiplosDeN n [] = []
+multiplosDeN n (x:xs)
+    | mod x n == 0 = x : multiplosDeN n xs
+    | otherwise = multiplosDeN n xs
+ordenar :: [Integer] -> [Integer]
+ordenar [] = []
+ordenar (x:xs) = ordenar (quitar (maximo (x:xs))) ++ [maximo (x:xs)]
