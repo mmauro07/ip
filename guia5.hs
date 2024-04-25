@@ -38,7 +38,17 @@ hayRepetidos (x:xs)
     | longitud (x:xs) > 2 = ultimo (x:xs) == ultimo (principio (x:xs)) || todosDistintos (principio xs)
 quitar :: (Eq t) => t -> [t] -> [t]
 quitar x (y:ys)
-    | 
+    | x==y = ys
+    | otherwise = y : quitar x ys
+quitarTodos :: (Eq t) => t -> [t] -> [t]
+quitarTodos _ [] = []
+quitarTodos x (y:ys)
+    | x == y = quitarTodos x ys
+    | otherwise = y : quitarTodos x ys
+eliminarRepetidos :: (Eq t) => [t] -> [t]
+eliminarRepetidos [] = []
+eliminarRepetidos (x:xs) = x : eliminarRepetidos (quitarTodos x xs)
+mismosElementos :: (Eq t) => [t] -> [t] -> Bool
 -----ejercicioTres-----
 sumatoria :: [Integer] -> Integer
 sumatoria [] = 0
