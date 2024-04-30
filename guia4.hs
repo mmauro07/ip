@@ -166,3 +166,14 @@ sumaKprimos 1 = 2
 sumaKprimos n = nesimoPrimo n + nesimoPrimo (n-1)
 -----ejercicioVeinte-----
 tomaValorMax :: Integer -> Integer -> Integer
+tomaValorMax n1 n2 = maxSumaDivisores n1 n2 n1 (sumaDivisores n1)
+-----ejercicioVeintiuno-----
+pitagoras :: Integer -> Integer -> Integer -> Integer
+pitagoras m n r = contarPares 0 0
+  where
+    contarPares :: Integer -> Integer -> Integer
+    contarPares p q
+      | p > m = 0
+      | q > n = contarPares (p + 1) 0
+      | p^2 + q^2 <= r^2 = 1 + contarPares p (q + 1)
+      | otherwise = contarPares p (q + 1)
