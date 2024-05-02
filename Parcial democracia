@@ -1,0 +1,15 @@
+-----ejercicioUno-----
+votosEnBlanco :: [(String, String)] -> [Integer] -> Integer -> Integer
+votosEnBlanco _ votos cantTotalVotos = cantTotalVotos - sumaVotos votos
+
+sumaVotos :: [Integer] -> Integer
+sumaVotos [] = 0
+sumaVotos (x:xs) = x + sumaVotos xs
+-----ejercicioDos-----
+formulasValidas :: [(String, String)] -> Bool
+formulasValidas [] = True
+formulasValidas (p,v) : xs = p /= v && noAparecen (p,v) xs && formulasValidas xs
+
+noAparecen :: (String,String) -> [(String, String)] -> Bool
+noAparecen _ [] = True
+noAparecen (p,v) ((p1,v1) : xs) = p /= p1 && p /= v1 && v /= p1 && v /= v2 && noAparecen (p,v) xs
