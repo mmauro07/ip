@@ -1,0 +1,79 @@
+import math
+from typing import List, Dict, Tuple
+#Primera Parte
+#Ejercicio 1.1
+def pertenece(s: List[int], c: int) -> bool:
+    return c in s
+
+def pertenece1(s: List[int], c: int) -> bool:
+    for elemento in s:
+        if elemento == c:
+            return True
+    return False
+
+def pertenece2(s: List[int], c: int) -> bool:
+    return any(elemento == c for elemento in s)
+
+#Ejercicio 1.2
+def divide_a_todos(s: List[int], c:int) -> bool:
+    return all(elemento % c == 0 for elemento in s)
+
+#Ejercicio 1.3
+def suma_total(s: List[int]) -> int:
+    suma = 0
+    for elemento in s:
+        suma += elemento
+    return suma
+
+#Ejercicio 1.4
+def ordenados(s: List[int]) -> bool:
+    for i in range(len(s) - 1):
+        if s[i] > s[i + 1]:
+            return False
+    return True
+
+#Ejercicio 1.5
+def longitud_mayor_a_7(s: List[str]) -> bool:
+    i = 0
+    while i < len(s):
+        if len(s[i]) > 7:
+            return True
+        i += 1
+    return False
+
+#Ejercicio 1.6
+def es_palindromo(s: List[str]) -> bool:
+    i = 0
+    while i < len(s)//2:
+        if s[i] != s[len(s)-(i+1)]:
+            return False
+        i += 1
+    return True
+
+#Ejercicio 1.7
+def fortaleza_contrasena(contrasena:str) -> str:
+    if len(contrasena) < 5:
+        return "ROJA"
+    elif len(contrasena) > 8 and any(c.islower() for c in contrasena) and any(c.isupper() for c in contrasena) and any(c.isdigit() for c in contrasena):
+        return "VERDE"
+    else:
+        return "AMARILLA"
+    
+#Ejercicio 1.8
+def saldo(movimientos: List[Tuple]) -> int:
+    saldo = 0
+    for movimiento, monto in movimientos:
+        if movimiento == 'I':
+            saldo += monto
+        elif movimiento == 'R':
+            saldo -= monto
+    return saldo
+
+#Ejercicio 1.9
+def tres_vocales_distintas(palabra:str) -> bool:
+    apareceVocal = [palabra.count(vocal) for vocal in 'aeiou']
+    vocales_distintas = sum(ocurrencias > 0 for ocurrencias in apareceVocal)
+    return vocales_distintas >= 3
+
+#Segunda parte
+#Ejercicio 2.1
