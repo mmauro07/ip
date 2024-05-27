@@ -77,3 +77,43 @@ def tres_vocales_distintas(palabra:str) -> bool:
 
 #Segunda parte
 #Ejercicio 2.1
+def cero_en_posicion_par(s: List[int]):
+    i = 0
+    while i < len(s):
+        if i % 2 == 0:
+            s[i] = 0
+    return s
+
+#Ejercicio 2.2
+def cero_en_posicion_par2(s: List[int]) -> List[int]:
+    
+
+#Ejercicio 4.1
+def lista_de_nombres() -> List[str]:
+    res:List[str] = []
+    sigo_pidiendo: bool = True
+    while sigo_pidiendo:
+        nombre = input("Ingrese nombre:\n")
+        if nombre == "listo":
+            sigo_pidiendo = False
+        else:
+            res.append(nombre)
+    return res
+
+#Ejercicio 4.2
+def historial_monedero() -> List[Tuple[str,int]]
+    credito: int = 0
+    historial: List[Tuple[str,int]] = []
+    sesion_activa: bool = True
+    while sesion_activa:
+        operacion: str = input("Ingrese operacion:\n")
+        if operacion == "C" or operacion == "D":
+            monto: int = int(input("Ingrese operacion:\n"))
+            historial.append((operacion,monto))
+            if operacion == "C":
+                credito += monto
+            else:
+                credito -= monto
+        if operacion == "X":
+            sesion_activa = False
+    return historial
