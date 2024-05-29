@@ -145,17 +145,13 @@ def eliminar_repetidos(s:str) -> str:
 def promedio(s:list[int]) -> float:
     promedio = suma_total(s)/len(s)
 
-def aprobado(s:list[int]) -> int:
-    i = 0
-    while i < len(s):
-        if all(s[i]>=4) and promedio(s)>=7.0:
-            resultado = 1
-        elif all(s[i]>=4) and promedio(s)<7.0 and promedio(s)>=4.0:
-            resultado = 2
-        else:
-            resultado = 3
-        i += 1
-    return resultado
+def aprobado(s: list[int]) -> int:
+    if all(x >= 4 for x in s) and promedio(s) >= 7.0:
+        return 1
+    elif all(x >= 4 for x in s) and 4.0 <= promedio(s) < 7.0:
+        return 2
+    else:
+        return 3
 
 #Ejercicio 4.1
 def lista_de_nombres() -> List[str]:
