@@ -147,8 +147,92 @@ def calcular_promedio_por_estudiante(nombre_archivo_notas : str, nombre_archivo_
     promedios.close()
 
 #PILAS
-from queue import LifoQueue
+from queue import LifoQueue as Pila
+from queue import Queue as Cola
 import random
 #ejercicio 8
-def generar_nros_al_azar(cantidad: int, desde: int, hasta: int) -> LifoQueue[int]:
-    
+#falta asociar con funcion imprimir_pila
+def generar_nros_al_azar_pila(cantidad:int, desde:int, hasta:int) -> Pila[int]:
+    p: Pila[int] = Pila()
+    for i in range(cantidad):
+        numero:int = random.randint(desde,hasta)
+        p.put(numero)
+    return p
+
+#funciona como si fuese cola, corregir
+def imprimir_pila(pila:Pila[int]):
+    lista_auxiliar: list[int] = []
+    while not pila.empty():
+        lista_auxiliar.append(pila.get())
+    print(lista_auxiliar)
+    for i in range(len(lista_auxiliar)):
+        pila.put(lista_auxiliar[i])
+
+#ejercicio 9
+#falta volvera a apilar los elementos
+def cantidad_elementos(p:Pila) -> int:
+    cantidad = 0
+    for cantidad in range(len(p)):
+        if not p.empty():
+            p.get()
+            cantidad += 1
+    print(cantidad)
+
+#ejercicio 10
+#def buscar_el_maximo(p:Pila[int]) -> int:
+
+#ejercicio 11
+#def esta_bien_balanceada(s:str) -> bool:
+
+#ejercicio 12
+#def evaluar_expresion(s:str) -> float:
+
+#COLAS
+#ejercicio 13
+#falta asociar con función imprimir_cola
+def generar_nros_al_azar_cola(cantidad:int, desde:int, hasta:int) -> Cola[int]:
+    c: Cola[int] = Cola()
+    for i in range(cantidad):
+        numero: int = random.randint(desde,hasta)
+        c.put(numero)
+    return c
+
+def imprimir_cola(cola:Cola[int]):
+    lista_auxiliar: list[int] = []
+    while not cola.empty():
+        lista_auxiliar.append(cola.get())
+    print(lista_auxiliar)
+    for i in range(len(lista_auxiliar)):
+        cola.put(lista_auxiliar[i])
+
+#DICCIONARIOS
+#ejercicio 19
+def agrupar_por_longitud(nombre_archivo:str) -> dict:
+    archivo = open(nombre_archivo,'r',encoding='UTF-8')
+    longitudes: dict[int,int] = {}
+    for linea in archivo.readlines():
+        for palabra in linea.split():
+            if len(palabra) in longitudes.keys():
+                longitudes[len(palabra)] = longitudes[len(palabra)] + 1
+            else:
+                longitudes[len(palabra)] = 1
+    archivo.close()
+    return longitudes
+
+#ejercicio 21
+def la_palabra_mas_frecuente(nombre_archivo:str) -> str:
+    archivo = open(nombre_archivo,'r',encoding='UTF-8')
+    frecuencia: dict[str,int] = {}
+    for linea in archivo.readlines():
+        for palabra in linea.split():
+            if palabra in frecuencia.keys():
+                frecuencia[palabra] = frecuencia[palabra] + 1
+            else:
+                frecuencia[palabra] = 1
+    mas_apariciones: str = ""
+    for palabra in frecuencia.keys():
+        if mas_apariciones == "":
+            mas_apariciones = palabra
+        elif frecuencia[mas_apariciones] <= frecuencia[palabra]:
+            mas_apariciones = palabra
+    return mas_apariciones
